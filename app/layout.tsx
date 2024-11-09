@@ -35,7 +35,7 @@ export default function RootLayout({
         <meta name="twitter:image" content="https://dandadan-manga.vercel.app//twitter-image.jpg" />
       </Head>
       
-      <body className={inter.className}>
+      <body className={`${inter.className} min-h-screen flex flex-col`}>
       <TanstackProvider>
         <ThemeProvider>
           {children}
