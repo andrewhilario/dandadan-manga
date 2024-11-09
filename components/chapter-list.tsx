@@ -64,7 +64,7 @@ export function ChapterList() {
   }
 
   return (
-    <div className="w-full mx-auto p-4">
+    <div className="w-full mx-auto xl:p-4">
       <div className="flex flex-col gap-4 mb-6">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold">Chapters</h2>

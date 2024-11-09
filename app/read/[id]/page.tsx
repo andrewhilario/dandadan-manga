@@ -28,7 +28,7 @@ interface ChapterReadResponse {
 export default function ReadChapter() {
   const params = useParams()
   const router = useRouter()
-  const id = params.id as string
+  const id = params!.id as string
   const [showScrollButton, setShowScrollButton] = useState(false)
   const [isAutoScrolling, setIsAutoScrolling] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
