@@ -50,7 +50,8 @@ export default function ReadChapter() {
         ...data,
         chapters: data.chapters.reverse()
       };
-    }
+    },
+    enabled: !!id
   });
 
   const { data, isLoading, error } = useQuery({
@@ -64,7 +65,8 @@ export default function ReadChapter() {
       }
       const data = await response.json();
       return data;
-    }
+    },
+    enabled: !!id
   });
 
   useEffect(() => {

@@ -10,7 +10,7 @@ export default function ReadLayout({
 }>) {
   const pathname = usePathname();
   const router = useRouter();
-  const isReadPage = pathname.startsWith("/read");
+  const isReadPage = pathname!.startsWith("/read");
 
   return (
     <main className="flex flex-col">
