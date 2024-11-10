@@ -41,7 +41,7 @@ export default function ReadChapter() {
   const { data: chapterList } = useQuery({
     queryKey: ["chapters"],
     queryFn: async () => {
-      const response = await fetch(`${API_URL}/info/132029?provider=mangahere`);
+      const response = await fetch(`${API_URL}/info?id=dandadan`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -57,9 +57,7 @@ export default function ReadChapter() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["chapter", id],
     queryFn: async () => {
-      const response = await fetch(
-        `${API_URL}/read?chapterId=dandadan/${id}&provider=mangahere`
-      );
+      const response = await fetch(`${API_URL}/read?chapterId=dandadan/${id}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
