@@ -156,7 +156,7 @@ export default function ReadChapter() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center p-8 items-center bg-gray-900">
+      <div className="flex justify-center p-8 items-center bg-gray-900 h-screen">
         <Loader2 className="animate-spin h-10 w-10 text-white" />
         <span className="ml-2 text-white">Loading chapter...</span>
       </div>
@@ -241,7 +241,7 @@ export default function ReadChapter() {
                   image.img
                 )}&referer=${encodeURIComponent(image.headerForImage.Referer)}`}
                 alt={`Page ${image.page}`}
-                className="max-w-full h-auto"
+                className="max-w-full xl:w-[72%] h-auto "
                 loading="lazy"
                 referrerPolicy="no-referrer"
                 style={{
