@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from 'next-themes'
 import { TanstackProvider } from "@/components/TanstackQueryProvider";
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
@@ -75,6 +76,7 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </TanstackProvider>
+        <Analytics />
       </body>
     </html>
   );
