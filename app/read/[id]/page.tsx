@@ -33,8 +33,8 @@ export default function ReadChapter() {
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [scrollInterval, setScrollInterval] = useState(() => {
+    if (typeof window === "undefined") return 5000;
     const savedInterval = localStorage.getItem("scrollInterval");
-    console.log(savedInterval);
     return savedInterval ? parseInt(savedInterval) : 5000;
   });
 
@@ -119,18 +119,18 @@ export default function ReadChapter() {
 
   const currentChapterIndex = chapterList?.chapters.findIndex(
     (chapter: Chapter) => chapter.id === `dandadan/${id}`
-  );
+  ) ?? -1;
 
   const hasNextChapter =
-    currentChapterIndex !== undefined && currentChapterIndex > 0;
+    currentChapterIndex !== -1 &&
+    currentChapterIndex < (chapterList?.chapters.length ?? 0) - 1;
 
   const hasPreviousChapter =
-    currentChapterIndex !== undefined &&
-    currentChapterIndex < chapterList?.chapters.length + 1;
+    currentChapterIndex > 0;
 
   const handleNextChapter = () => {
     if (hasNextChapter && chapterList) {
-      const nextChapter = chapterList.chapters[currentChapterIndex - 1];
+      const nextChapter = chapterList.chapters[currentChapterIndex + 1];
       const nextChapterId = nextChapter.id.split("dandadan")[1];
       router.push(`/read/${nextChapterId}`);
     }
@@ -138,9 +138,8 @@ export default function ReadChapter() {
 
   const handlePreviousChapter = () => {
     if (hasPreviousChapter && chapterList) {
-      const previousChapter = chapterList.chapters[currentChapterIndex + 1];
+      const previousChapter = chapterList.chapters[currentChapterIndex - 1];
       const previousChapterId = previousChapter.id.split("dandadan")[1];
-      console.log(previousChapterId);
       router.push(`/read/${previousChapterId}`);
     }
   };
@@ -258,21 +257,21 @@ export default function ReadChapter() {
             </div>
           ))}
         </div>
-        <div className="mt-8 flex justify-between gap-4">
+        <div className="mt-8 flex gap-4">
           {hasPreviousChapter && chapterList && (
             <button
               onClick={handlePreviousChapter}
               className="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
             >
-              ← Chapter {chapterList.chapters[currentChapterIndex + 1]?.title}
+              ← Chapter {chapterList.chapters[currentChapterIndex - 1]?.title}
             </button>
           )}
           {hasNextChapter && chapterList && (
             <button
               onClick={handleNextChapter}
-              className="bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
+              className="ml-auto bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
             >
-              Chapter {chapterList.chapters[currentChapterIndex - 1]?.title} →
+              Chapter {chapterList.chapters[currentChapterIndex + 1]?.title} →
             </button>
           )}
         </div>

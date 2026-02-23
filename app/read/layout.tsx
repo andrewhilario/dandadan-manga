@@ -1,16 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function ReadLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
   const router = useRouter();
-  const isReadPage = pathname!.startsWith("/read");
 
   return (
     <main className="flex flex-col">
@@ -28,37 +26,36 @@ export default function ReadLayout({
                       height={40}
                     />
                   </div>
-
                   <h1 className="text-2xl font-bold text-white">
                     Dandadan Manga
                   </h1>
                 </div>
               </a>
-              {isReadPage && (
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://www.buymeacoffee.com/ainzzuu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="opacity-50 hover:opacity-100 transition-opacity"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=ainzzuu&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"
+                    alt="Buy Me A Coffee"
+                    className="h-8"
+                  />
+                </a>
                 <button
                   onClick={() => router.push("/")}
                   className="px-4 py-2 rounded-md bg-gray-800 text-white hover:bg-gray-700 transition-colors"
                 >
                   Back to Home
                 </button>
-              )}
+              </div>
             </div>
           </div>
         </div>
       </nav>
-      <header className="bg-gradient-to-r from-gray-900 to-gray-800 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-gray-100 sm:text-5xl md:text-6xl">
-              Welcome to Dandadan Manga
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-gray-400 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              Discover the supernatural world of Dandadan, where ghosts and
-              aliens collide in an epic adventure.
-            </p>
-          </div>
-        </div>
-      </header>
       {children}
     </main>
   );

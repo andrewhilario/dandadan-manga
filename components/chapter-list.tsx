@@ -96,11 +96,8 @@ export function ChapterList() {
           >
             <div>
               <h3 className="text-lg font-medium hover:underline transition-all ease-in-out duration-500">
-                Chapter {chapter.title}
+                Chapter {chapter.title.split("Ch.").pop() ?? chapter.title}
               </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {chapter.title}
-              </p>
             </div>
             <span className="text-sm text-gray-500 dark:text-gray-400">
               {new Date(chapter.releasedDate).toLocaleDateString()}

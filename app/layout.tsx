@@ -8,12 +8,28 @@ import { Analytics } from '@vercel/analytics/next';
 const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dandadan Manga | Read Latest Chapters Online Free | Official Site",
-  description: "Read the latest chapters of Dandadan manga online for free. Follow Momo Ayase and Ken Takakura's supernatural adventures with ghosts and aliens. New chapters every Monday. High-quality scans, fast loading, and mobile-friendly reading experience.",
-  keywords: "dandadan manga, read dandadan online, latest dandadan chapters, momo ayase, ken takakura, yukinobu tatsu manga, supernatural manga 2024, best action manga, weekly shonen jump, ghost manga, alien manga, free manga reading, official dandadan translation, dandadan chapter 1, dandadan new release",
+  metadataBase: new URL("https://dandadan-manga.vercel.app"),
+  title: {
+    default: "Dandadan Manga | Read Latest Chapters Online Free",
+    template: "%s | Dandadan Manga"
+  },
+  description: "Read the latest Dandadan manga chapters online for free. Follow Momo Ayase and Ken Takakura's supernatural adventures with ghosts and aliens. New chapters every Monday. Fast loading, mobile-friendly.",
+  keywords: [
+    "dandadan manga",
+    "read dandadan online",
+    "dandadan chapters",
+    "momo ayase",
+    "ken takakura",
+    "yukinobu tatsu",
+    "supernatural manga",
+    "weekly shonen jump manga",
+    "free manga reading",
+    "dandadan new chapter"
+  ],
   authors: [{ name: "Yukinobu Tatsu" }],
   creator: "Yukinobu Tatsu",
   publisher: "Shogakukan",
+  category: "manga",
   alternates: {
     canonical: "https://dandadan-manga.vercel.app",
     languages: {
@@ -74,6 +90,20 @@ export default function RootLayout({
         <TanstackProvider>
           <ThemeProvider>
             {children}
+            <footer className="bg-gray-900 border-t border-gray-800 py-4 text-center">
+              <a
+                href="https://www.buymeacoffee.com/ainzzuu"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=ainzzuu&button_colour=FF5F5F&font_colour=ffffff&font_family=Lato&outline_colour=000000&coffee_colour=FFDD00"
+                  alt="Buy Me A Coffee"
+                  className="h-9 mx-auto opacity-80 hover:opacity-100 transition-opacity"
+                />
+              </a>
+            </footer>
           </ThemeProvider>
         </TanstackProvider>
         <Analytics />
