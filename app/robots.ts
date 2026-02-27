@@ -1,11 +1,16 @@
 import { MetadataRoute } from "next";
+import { BASE_URL } from "@/constants/api";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/"
-    },
-    sitemap: "https://dandadan-manga.vercel.app/sitemap.xml"
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/"]
+      }
+    ],
+    sitemap: `${BASE_URL}/sitemap.xml`,
+    host: BASE_URL
   };
 }

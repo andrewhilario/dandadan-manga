@@ -1,7 +1,5 @@
 import { MetadataRoute } from "next";
-
-const API_URL = "https://main-eight-smoky.vercel.app/manga/mangahere";
-const BASE_URL = "https://dandadan-manga.vercel.app";
+import { API_URL, BASE_URL } from "@/constants/api";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let chapterEntries: MetadataRoute.Sitemap = [];

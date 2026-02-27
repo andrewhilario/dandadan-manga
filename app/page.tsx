@@ -1,4 +1,5 @@
 import { ChapterList } from "@/components/chapter-list";
+import { BASE_URL } from "@/constants/api";
 import { Metadata } from "next";
 import Image from "next/image";
 import Script from "next/script";
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
   title: "Dandadan Manga | Read Latest Chapters Online Free",
   description:
     "Read the latest Dandadan manga chapters online for free. Follow Momo Ayase and Ken Takakura in a supernatural adventure with ghosts and aliens. New chapters every Monday.",
-  alternates: { canonical: "https://dandadan-manga.vercel.app" }
+  alternates: { canonical: BASE_URL }
 };
 
 const jsonLd = {
@@ -15,26 +16,89 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://dandadan-manga.vercel.app/#website",
+      "@id": `${BASE_URL}/#website`,
       name: "Dandadan Manga",
-      url: "https://dandadan-manga.vercel.app",
+      url: BASE_URL,
       description:
         "Read Dandadan manga online for free. Latest chapters updated every Monday.",
       potentialAction: {
         "@type": "SearchAction",
-        target: "https://dandadan-manga.vercel.app/?q={search_term_string}",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${BASE_URL}/?q={search_term_string}`
+        },
         "query-input": "required name=search_term_string"
+      },
+      publisher: {
+        "@id": `${BASE_URL}/#organization`
       }
     },
     {
       "@type": "Organization",
-      "@id": "https://dandadan-manga.vercel.app/#organization",
+      "@id": `${BASE_URL}/#organization`,
       name: "Dandadan Manga",
-      url: "https://dandadan-manga.vercel.app",
+      url: BASE_URL,
       logo: {
         "@type": "ImageObject",
-        url: "https://dandadan-manga.vercel.app/favicon.png"
+        "@id": `${BASE_URL}/#logo`,
+        url: `${BASE_URL}/favicon.png`,
+        width: 512,
+        height: 512,
+        caption: "Dandadan Manga"
+      },
+      sameAs: [
+        "https://mangaplus.shueisha.co.jp/titles/100170"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/#webpage`,
+      url: BASE_URL,
+      name: "Dandadan Manga | Read Latest Chapters Online Free",
+      isPartOf: { "@id": `${BASE_URL}/#website` },
+      about: { "@id": `${BASE_URL}/#comicseries` },
+      description:
+        "Read the latest Dandadan manga chapters online for free. Follow Momo Ayase and Ken Takakura in a supernatural adventure with ghosts and aliens.",
+      inLanguage: "en-US",
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: BASE_URL
+          }
+        ]
       }
+    },
+    {
+      "@type": "ComicSeries",
+      "@id": `${BASE_URL}/#comicseries`,
+      name: "Dandadan",
+      alternateName: ["ダンダダン", "Dan Da Dan"],
+      url: BASE_URL,
+      description:
+        "Dandadan is a Japanese manga series by Yukinobu Tatsu. It follows high school student Momo Ayase and her classmate Ken Takakura as they encounter supernatural entities including ghosts and aliens.",
+      author: {
+        "@type": "Person",
+        name: "Yukinobu Tatsu"
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Shogakukan",
+        url: "https://www.shogakukan.co.jp"
+      },
+      genre: ["Supernatural", "Action", "Comedy", "Romance", "Shonen"],
+      inLanguage: "en",
+      image: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630
+      },
+      isAccessibleForFree: true,
+      keywords: "dandadan, manga, supernatural, action, momo ayase, ken takakura"
     }
   ]
 };
@@ -47,7 +111,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* Create a Navbar for a manga website add a simple logo with a word "Dandadan" */}
+      {/* Navbar */}
       <nav className="w-full bg-gray-900 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">

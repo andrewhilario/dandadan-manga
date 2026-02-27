@@ -4,11 +4,12 @@ import "./globals.css";
 import { ThemeProvider } from 'next-themes'
 import { TanstackProvider } from "@/components/TanstackQueryProvider";
 import { Analytics } from '@vercel/analytics/next';
+import { BASE_URL } from "@/constants/api";
 
 const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dandadan-manga.vercel.app"),
+  metadataBase: new URL(BASE_URL),
   title: {
     default: "Dandadan Manga | Read Latest Chapters Online Free",
     template: "%s | Dandadan Manga"
@@ -18,22 +19,26 @@ export const metadata: Metadata = {
     "dandadan manga",
     "read dandadan online",
     "dandadan chapters",
+    "dandadan chapter list",
     "momo ayase",
     "ken takakura",
     "yukinobu tatsu",
     "supernatural manga",
     "weekly shonen jump manga",
     "free manga reading",
-    "dandadan new chapter"
+    "dandadan new chapter",
+    "dandadan online free",
+    "dandadan scan",
+    "dandadan english"
   ],
   authors: [{ name: "Yukinobu Tatsu" }],
   creator: "Yukinobu Tatsu",
   publisher: "Shogakukan",
   category: "manga",
   alternates: {
-    canonical: "https://dandadan-manga.vercel.app",
+    canonical: BASE_URL,
     languages: {
-      'en-US': 'https://dandadan-manga.vercel.app'
+      'en-US': BASE_URL
     }
   },
   robots: {
@@ -51,12 +56,12 @@ export const metadata: Metadata = {
     title: "Dandadan Manga - Read Latest Supernatural Action Series Online",
     description: "Experience the thrilling supernatural world of Dandadan manga. Follow high school students battling ghosts and aliens in this critically acclaimed series. New chapters released weekly. Start reading now!",
     type: "website",
-    url: "https://dandadan-manga.vercel.app/",
-    siteName: "Dandadan Manga Official",
+    url: BASE_URL,
+    siteName: "Dandadan Manga",
     locale: "en_US",
     images: [
       {
-        url: "https://dandadan-manga.vercel.app/og-image.jpg",
+        url: `${BASE_URL}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: "Dandadan Manga Cover featuring Momo Ayase and Ken Takakura"
@@ -70,7 +75,7 @@ export const metadata: Metadata = {
     site: "@dandadan_manga",
     creator: "@yukinobu_tatsu",
     images: [{
-      url: "https://dandadan-manga.vercel.app/twitter-image.jpg",
+      url: `${BASE_URL}/og-image.jpg`,
       alt: "Dandadan Manga Latest Chapter Cover"
     }]
   },
